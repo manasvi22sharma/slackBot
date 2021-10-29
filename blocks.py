@@ -457,3 +457,113 @@ data_definition={
 		}
 	]
 }
+mis_message={
+	'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",	
+	"blocks": [
+		{
+			"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : Data definition ",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "mis_selection",
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Select a MIS"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "a",
+							"emoji": True
+						},
+						"value": "select_a"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "b",
+							"emoji": True
+						},
+						"value": "select_b"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "c",
+							"emoji": True
+						},
+						"value": "select_c"
+					}
+				],
+				"action_id": "select_mis"
+			}
+		}
+	]
+}
+metric_message={
+	'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",	
+    "blocks": [
+		{
+			"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : Data definition ",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "metric_selection",
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Select a Metric/dimension for MIS: NONE"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": True
+				},
+				"options": [],
+				"action_id": "select_metric"
+			}
+		}
+	]
+}
+
+
+mis={ # 'mis_name':['metric_ name1','metric_name2']
+	'select_a':['1', '2','3'],
+	'select_b':['q','w','a'],
+	'select_c':['!','@','#']
+}

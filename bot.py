@@ -15,7 +15,7 @@ slack_event_adapter =SlackEventAdapter(os.environ['SIGINIG_SECRET'],'/slack/even
 client =slack.WebClient(token=os.environ['SLACK_TOKEN'])
 
 User_ID_BOT=client.api_call("auth.test")["user_id"]
-
+users={}
 #def actionsOfWelcomeMessage(action_value, user_id,payload):
     #blocks.access["channel"]=user_id
         #client.chat_postMessage(channel=user_id, text='Request Submitted')
@@ -65,6 +65,8 @@ def Useraction():
     action_id=action[0]['action_id']
     action_value='none'
     #print(action_value)
+    if user_id not in users:
+        users[user_id]={'selected_mis': None, 'selected_mis':None}
     #welcome_message
     if action_id=='welcomeMessage':
         action_value=action[0]['selected_option']['value']
@@ -88,8 +90,8 @@ def Useraction():
             blocks.query["channel"]=user_id
             client.chat_postMessage(**blocks.query)
         if action_value=='select_data_definition':#data definition view like set of drop down 1 mis 2 metrc and dimensions
-            blocks.data_definition["channel"]=user_id
-            client.chat_postMessage(**blocks.data_definition)
+            blocks.mis_message["channel"]=user_id
+            client.chat_postMessage(**blocks.mis_message)
         # if action_vlaue==''select_engRequest:
         #else :
             #def actionsOfWelcomeMessage(action_value, user_id,payload)
@@ -126,9 +128,36 @@ def Useraction():
              client.chat_postMessage(channel=user_id, text=f':red_circle:Please add a query')
         else:
             client.chat_postMessage(channel=user_id, text=f':large_green_circle: Running Query....')
-
+    #data definition request
+    if action_id=='select_mis':
+        selected_mis_value=action[0]['selected_option']['value']
+        selected_mis_name=action[0]['selected_option']['text']['text']
+        users[user_id]['selected_mis']=selected_mis_name
+        #updating metric_message
+        metrics=blocks.mis[selected_mis_value]
+        for metric in metrics:
+            option={"text": {"type": "plain_text","text": "","emoji": True},"value": ""}
+            option['text']['text']=metric
+            option['value']=metric
+            blocks.metric_message['blocks'][2]['accessory']['options'].append(option)
+        blocks.metric_message['blocks'][2]['text']['text']=f'Select a Metric/dimension for MIS:{selected_mis_name}'
+        blocks.metric_message["channel"]=user_id
+        print(blocks.metric_message)
+        client.chat_postMessage(**blocks.metric_message)
+        blocks.metric_message['blocks'][2]['accessory']['options']=[]
+        blocks.metric_message['blocks'][2]['text']['text']=f'Select a Metric/dimension for MIS: NONE'
+    if action_id=='select_metric':
+        if users[user_id]['selected_mis']==None:
+            client.chat_postMessage(channel=user_id, text=f':red_circle: MIS not selected')
+            return
+        selected_metric=action[0]['selected_option']['value']
+        users[user_id]['selected_metric']=selected_metric
+        selected_mis=users[user_id]['selected_mis']
+        client.chat_postMessage(channel=user_id, text=f':large_green_circle: selected mis is {selected_mis} and selected metric is {selected_metric}')
+        selected_mis=None
 
     return Response(), 200
 
 if __name__=="__main__":
+    #print("nere")
     app.run(debug=True)
