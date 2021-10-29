@@ -128,10 +128,10 @@ Welcome_Message_new={
 					{
 						"text": {
 							"type": "plain_text",
-							"text": "Check out the Bluelight Web Portal",
+							"text": "Data Definition",
 							"emoji": True
 						},
-						"value": "select_portal"
+						"value": "select_data_definition"
 					},
 					{
 						"text": {
@@ -142,12 +142,317 @@ Welcome_Message_new={
 						"value": "select_faq"
 					}
 				],
-				"action_id": "static_select-action"
+				"action_id": "welcomeMessage"
 			},
 			"label": {
 				"type": "plain_text",
 				"text": "what would you like to do today ?",
 				"emoji": True
+			}
+		}
+	]
+}
+
+query= {
+	 'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",
+	"blocks": [
+		{
+			"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : Query on data",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "query_input",
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"multiline": True,
+				"action_id": "select_query_input"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Enter your query below:",
+				"emoji": True
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Submit",
+						"emoji": True
+					},
+					"value": "click_query_submit",
+					"action_id": "query_submit"
+				}
+			]
+		}
+	]
+	
+}
+
+access={
+ 	'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",
+	"blocks": [
+		{	"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : Raise an access request ",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "access_album",
+			"type": "input",
+			"element": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "album 1",
+							"emoji": True
+						},
+						"value": "select_album1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "album 2",
+							"emoji": True
+						},
+						"value": "select_album2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "album 3",
+							"emoji": True
+						},
+						"value": "select_album3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "album 4",
+							"emoji": True
+						},
+						"value": "select_album4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "album 5",
+							"emoji": True
+						},
+						"value": "select_album5"
+					}
+				],
+				"action_id": "access_album_select"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Pick an album",
+				"emoji": True
+			}
+		},
+		{
+			"block_id": "access_bj",
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"multiline": True,
+				"action_id": "access_bj"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Business Justification",
+				"emoji": True
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "Submit",
+						"emoji": True
+					},
+					"value": "click_acess_submit",
+					"action_id": "access_submit"
+				}
+			]
+		}
+	]
+}
+
+faq={
+	'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",	
+	"blocks": [
+		{
+			"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : FAQ ",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "faq_question",
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"multiline": True,
+				"action_id": "faq_question"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Please wite your question below",
+				"emoji": True
+			}
+		},
+		{
+			"type": "actions",
+			"elements": [
+				{
+					"type": "button",
+					"text": {
+						"type": "plain_text",
+						"text": "submit",
+						"emoji": True
+					},
+					"value": "click_faq",
+					"action_id": "faq_submit"
+				}
+			]
+		}
+	]
+}
+
+data_definition={
+	'ts': "",
+    "channel": "",
+    "username": "Welcome Robot!",
+    "icon_emoji": "",
+    "text":"",	
+	"blocks": [
+		{
+			"block_id": "heading",
+			"type": "header",
+			"text": {
+				"type": "plain_text",
+				"text": "You have selected : Data definition ",
+				"emoji": True
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"block_id": "mis_selection",
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Select a MIS"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "a",
+							"emoji": True
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "b",
+							"emoji": True
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "c",
+							"emoji": True
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "action_mis"
+			}
+		},
+		{
+			"block_id": "dimension_selection",
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Select metric or dimension"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": True
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "select a mis",
+							"emoji": True
+						},
+						"value": "default"
+					}
+				],
+				"action_id": "action_metric_dimension"
 			}
 		}
 	]
